@@ -1,0 +1,8 @@
+# Normalisasi line ending agar konsisten di semua OS
+* text=auto eol=lf
+
+# File biner
+*.jpeg binary
+*.jpg binary
+*.png binary
+*.svg text

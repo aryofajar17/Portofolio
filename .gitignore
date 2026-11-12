@@ -1,0 +1,30 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log & cache
+*.log
+npm-debug.log*
+.npm
+.cache/
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Build (tidak dipakai, tapi untuk jaga-jaga)
+dist/
+build/
+
+# File sementara
+*.tmp
+_mobile-test.html
