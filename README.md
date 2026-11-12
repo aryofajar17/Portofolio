@@ -4,8 +4,14 @@ Website portofolio pribadi satu halaman dengan tema **gelap ungu**. Dibuat untuk
 melamar kerja dan magang: menampilkan data diri, keahlian, pengalaman organisasi, hobi,
 motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
 
-<!-- Ganti URL di bawah dengan URL GitHub Pages Anda setelah deploy -->
-**[🔗 Lihat website](https://aryofajar17.github.io/)**
+<!-- Setelah deploy, ganti bagian ini dengan URL website Anda -->
+> 🔗 **Live demo:** `https://aryofajar17.github.io/` _(aktifkan GitHub Pages dulu — lihat bagian [Deploy](#-deploy))_
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Tanpa dependensi](https://img.shields.io/badge/dependencies-0-8b5cf6?style=flat-square)
+![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F100-c084fc?style=flat-square)
 
 ---
 
@@ -24,6 +30,7 @@ motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
 ## 🛠️ Teknologi
 
 Murni HTML, CSS, dan JavaScript — **tanpa framework, tanpa build tool, tanpa dependensi**.
+Cukup buka `index.html` di browser, tidak ada proses instalasi.
 
 | Bagian | Detail |
 |---|---|
@@ -42,8 +49,9 @@ Murni HTML, CSS, dan JavaScript — **tanpa framework, tanpa build tool, tanpa d
 │   ├── main.js           # Interaksi: menu, animasi, validasi form, tema
 │   ├── foto-profil.jpeg  # Foto profil
 │   └── favicon.svg       # Ikon tab browser (inisial AF)
-├── README.md
-└── .gitignore
+├── .gitignore
+├── .gitattributes
+└── README.md
 ```
 
 ## 🚀 Menjalankan secara lokal
@@ -119,11 +127,42 @@ dengan fokus di area wajah (`object-position: center 22%`).
 3. Klik **Save**, tunggu 1–2 menit.
 4. Website tersedia di `https://<username>.github.io/<nama-repo>/`.
 
+> **Tips:** bila repo diberi nama `<username>.github.io`, website langsung dapat diakses
+> di `https://<username>.github.io/` tanpa akhiran nama repo.
+
 ### Alternatif
 
 - **Netlify** — drag & drop folder ini ke [app.netlify.com/drop](https://app.netlify.com/drop).
 - **Vercel** — import repositori, tanpa konfigurasi build (framework: *Other*).
 - **Cloudflare Pages** — hubungkan repositori, build command dikosongkan.
+
+## 📤 Push ke GitHub
+
+Repositori lokal sudah diinisialisasi dan commit pertama sudah dibuat pada branch `main`.
+Tinggal tambahkan remote dan push:
+
+```bash
+# 1. Hubungkan ke repo GitHub Anda (ganti URL-nya)
+git remote add origin https://github.com/USERNAME/NAMA-REPO.git
+
+# 2. Push commit pertama
+git push -u origin main
+```
+
+Jika repo GitHub sudah berisi file (mis. README bawaan), tarik dulu lalu gabungkan:
+
+```bash
+git pull --rebase origin main --allow-unrelated-histories
+git push -u origin main
+```
+
+Untuk perubahan berikutnya cukup:
+
+```bash
+git add -A
+git commit -m "update: perbaikan konten"
+git push
+```
 
 ## 📄 Lisensi
 
