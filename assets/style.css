@@ -1764,6 +1764,17 @@ p { margin: 0; }
   gap: clamp(20px, 3vw, 40px);
   align-items: center;
 }
+.spotify-art {
+  display: block;
+  width: min(100%, 220px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 16px;
+}
 .spotify-copy h3 { font-size: clamp(1.35rem, 2.6vw, 1.85rem); margin-bottom: 12px; }
 .spotify-copy p { font-size: .9rem; color: var(--muted); }
 .spotify-btn { margin-top: 20px; }
