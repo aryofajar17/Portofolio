@@ -22,6 +22,14 @@ motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
 - **Navigasi sticky** dengan penanda bagian aktif, menu mobile, dan progress bar gulir.
 - **Animasi reveal** saat elemen masuk layar — otomatis dinonaktifkan bila pengunjung memakai
   `prefers-reduced-motion`.
+- **Efek ala React Bits** (reactbits.dev, dibuat ulang murni CSS/JS tanpa dependensi):
+  - *Aurora background* + *partikel* melayang di hero (canvas, berhenti saat di luar layar),
+  - Nama di hero muncul dengan efek *blur-in*, judul section muncul *kata demi kata* (split text),
+    animasi ketik dengan sentuhan *scramble*,
+  - Kartu *tilt 3D* mengikuti kursor + *spotlight glow* pada kartu proyek, data diri, keahlian, dan kutipan,
+  - *Dock navigasi* ala macOS di bawah layar (ikon membesar mengikuti kursor, penanda bagian aktif),
+  - Tombol *magnet* yang tertarik mengikuti kursor dan tombol utama dengan *star border*
+    (bingkai cahaya berputar).
 - **Form kontak** dengan validasi dan pengiriman via aplikasi email.
 - **Tombol Unduh / Cetak CV** → pilih "Save as PDF" pada dialog cetak (ada stylesheet khusus print).
 - **Responsif** untuk desktop, tablet, dan ponsel.
@@ -74,13 +82,14 @@ npx serve .
 
 | Bagian | Konten |
 |---|---|
-| Hero | Nama, status, animasi peran, tombol aksi, media sosial |
+| Hero | Nama, status, animasi peran, tombol aksi, media sosial, aurora + partikel |
 | 01 Tentang | Cerita singkat + kartu data diri |
 | 02 Keahlian | Hard skill (progress bar), tools favorit, soft skill |
 | 03 Pengalaman | Sekretaris Umum (2026–2027), Staff Divisi Operasional, proyek latihan, pendidikan |
-| 04 Hobi | Bermain game, gym, mencoba koding baru |
-| 05 Motto | Motto hidup + kutipan favorit |
-| 06 Kontak | Email, WhatsApp, lokasi, form kontak |
+| 04 Proyek | Kartu proyek/eksperimen (tilt 3D + spotlight) + tombol ke GitHub |
+| 05 Hobi | Bermain game, gym, mencoba koding baru |
+| 06 Motto | Motto hidup + kutipan favorit |
+| 07 Kontak | Email, WhatsApp, lokasi, form kontak |
 
 ## 🎨 Kustomisasi
 
@@ -107,10 +116,25 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Data diri | bagian `#tentang` → `.info-list` |
 | Keahlian & persentase | bagian `#keahlian` → `.skill-label` dan `--w` pada `.bar-fill` |
 | Pengalaman & pendidikan | bagian `#pengalaman` → `.timeline-item` |
+| Proyek | bagian `#proyek` → `.project-card` (judul, deskripsi, tag, link GitHub) |
 | Hobi & game favorit | bagian `#hobi` → `.hobby-card` |
 | Motto & kutipan | bagian `#motto` |
 | Kontak | bagian `#kontak` |
+| Dock navigasi bawah | elemen `#dock` (tautan & ikon tiap bagian) |
 | Alamat email form | `assets/main.js` → variabel `mailto` |
+
+### Efek ala React Bits
+
+| Efek | Cara mengatur |
+|---|---|
+| Jumlah & warna partikel hero | `assets/main.js` → fungsi `spawnParticles` & `PARTICLE_COLORS` |
+| Warna & kecepatan aurora | `assets/style.css` → bagian `19a` (`.a-blob`, `@keyframes auroraA/B/C`) |
+| Kekuatan tilt kartu | `assets/main.js` → bagian `15c` (angka `6` dan `8` = derajat kemiringan) |
+| Besar maksimum ikon dock | `assets/main.js` → bagian `15d` (konstanta `MAG` dan `RANGE`) |
+| Kecepatan star border | `assets/style.css` → durasi `animation: starSpin` pada `.btn-primary::before` |
+
+> Semua efek otomatis nonaktif untuk pengunjung dengan `prefers-reduced-motion`, saat mencetak,
+> dan partikel berhenti saat tab tidak aktif (hemat baterai).
 
 ### Foto profil
 

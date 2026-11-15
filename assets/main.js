@@ -1,5 +1,5 @@
 /* =========================================================
-   Portfolio — Rizky Pratama
+   Portfolio — Aryo Fajar Pratomo
    Vanilla JS: tema, navigasi, animasi, form, dsb.
    ========================================================= */
 (function () {
@@ -12,7 +12,7 @@
   /* ---------- 1. Tema (gelap default, tersimpan di localStorage) ---------- */
   const root = document.documentElement;
   const themeToggle = $("#themeToggle");
-  const THEME_KEY = "rp-theme";
+  const THEME_KEY = "af-theme";
 
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
@@ -72,11 +72,17 @@
     });
   }
 
-  /* ---------- 4. Header, progress bar, tombol ke atas ---------- */
+  /* ---------- 4. Header, progress bar, tombol ke atas, dock ---------- */
   const header = $("#siteHeader");
   const progress = $("#scrollProgress");
   const toTop = $("#toTop");
+  const dock = $("#dock");
+  let dockLinks = dock ? Array.from(dock.querySelectorAll("a")) : [];
   let ticking = false;
+
+  function setDockActive(hash) {
+    dockLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === hash));
+  }
 
   function onScroll() {
     const y = window.scrollY || window.pageYOffset;
@@ -85,6 +91,7 @@
     if (header) header.classList.toggle("scrolled", y > 8);
     if (progress) progress.style.transform = `scaleX(${docH > 0 ? Math.min(y / docH, 1) : 0})`;
     if (toTop) toTop.classList.toggle("show", y > 620);
+    if (y < 240) setDockActive("#top");
     ticking = false;
   }
 
@@ -176,12 +183,19 @@
   const typedEl = $("#typedText");
   const roles = ["Teknik Informatika", "Web Developer", "Esports Enthusiast", "Siap Belajar Cepat"];
 
+  const SCRAMBLE_CHARS = "!<>-_\\/[]{}=+*^?#01";
+
   if (typedEl && !reduceMotion) {
     let roleIndex = 0, charIndex = roles[0].length, deleting = false;
 
     function typeLoop() {
       const word = roles[roleIndex];
-      typedEl.textContent = word.slice(0, charIndex);
+      // Sentuhan scramble ala React Bits: karakter berikutnya berkedip acak saat mengetik
+      let shown = word.slice(0, charIndex);
+      if (!deleting && charIndex < word.length) {
+        shown += SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0];
+      }
+      typedEl.textContent = shown;
 
       let delay = deleting ? 45 : 85;
 
@@ -223,9 +237,9 @@
     }, 7000);
   }
 
-  /* ---------- 10. Sorotan kursor pada kartu hobi ---------- */
+  /* ---------- 10. Sorotan kursor (spotlight) pada kartu ---------- */
   if (window.matchMedia("(hover: hover)").matches) {
-    $$(".hobby-card").forEach((card) => {
+    $$(".spotlight, .hobby-card").forEach((card) => {
       card.addEventListener("pointermove", (e) => {
         const rect = card.getBoundingClientRect();
         card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
@@ -250,6 +264,7 @@
         navLinks.forEach((link) => {
           link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
         });
+        setDockActive(`#${entry.target.id}`);
       });
     }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
     sections.forEach((section) => navObs.observe(section));
@@ -329,4 +344,182 @@
   /* ---------- 14. Tahun berjalan ---------- */
   const yearEl = $("#year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* =========================================================
+     15. Efek ala React Bits (vanilla) — partikel, split text,
+         tilt 3D, dock magnification, tombol magnet
+     ========================================================= */
+  const canHoverFine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  /* 15a. Partikel melayang di hero (canvas ringan, berhenti saat di luar layar) */
+  const heroSection = $(".hero");
+  const heroCanvas = $("#heroParticles");
+  if (heroSection && heroCanvas && !reduceMotion && heroCanvas.getContext) {
+    const ctx = heroCanvas.getContext("2d");
+    const PARTICLE_COLORS = ["192,132,252", "139,92,246", "240,171,252"];
+    const parts = [];
+    let w = 0, h = 0, rafId = null;
+
+    function sizeCanvas() {
+      const rect = heroSection.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = rect.width;
+      h = rect.height;
+      heroCanvas.width = Math.round(w * dpr);
+      heroCanvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function spawnParticles() {
+      const count = w < 640 ? 22 : 40;
+      parts.length = 0;
+      for (let i = 0; i < count; i++) {
+        parts.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.7 + .6,
+          vx: (Math.random() - .5) * .25,
+          vy: (Math.random() - .5) * .25 - .1,
+          c: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
+          a: Math.random() * .45 + .12,
+          tw: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, w, h);
+      for (const p of parts) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.tw += .02;
+        if (p.x < -12) p.x = w + 12; else if (p.x > w + 12) p.x = -12;
+        if (p.y < -12) p.y = h + 12; else if (p.y > h + 12) p.y = -12;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+        ctx.fillStyle = `rgba(${p.c},${(p.a * (0.6 + 0.4 * Math.sin(p.tw))).toFixed(3)})`;
+        ctx.fill();
+      }
+      rafId = requestAnimationFrame(drawParticles);
+    }
+
+    function startParticles() { if (rafId === null) rafId = requestAnimationFrame(drawParticles); }
+    function stopParticles() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
+
+    sizeCanvas();
+    spawnParticles();
+    startParticles();
+    window.addEventListener("resize", () => { sizeCanvas(); spawnParticles(); }, { passive: true });
+    document.addEventListener("visibilitychange", () => { document.hidden ? stopParticles() : startParticles(); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((en) => (en.isIntersecting ? startParticles() : stopParticles()));
+      }, { threshold: 0 }).observe(heroSection);
+    }
+  }
+
+  /* 15b. Split-text judul section: muncul kata demi kata saat di-scroll */
+  const splitTitles = $$(".section-head h2");
+  if ("IntersectionObserver" in window && !reduceMotion && splitTitles.length) {
+    splitTitles.forEach((h2) => {
+      const original = h2.textContent.trim();
+      const words = original.split(/\s+/);
+      h2.setAttribute("aria-label", original);
+      h2.textContent = "";
+      const wrap = document.createElement("span");
+      wrap.setAttribute("aria-hidden", "true");
+      wrap.className = "split-wrap";
+      words.forEach((word, i) => {
+        const s = document.createElement("span");
+        s.className = "split-word rise-word";
+        s.style.setProperty("--wi", String(i));
+        s.textContent = word;
+        wrap.appendChild(s);
+        if (i < words.length - 1) wrap.appendChild(document.createTextNode(" "));
+      });
+      h2.appendChild(wrap);
+    });
+
+    const splitObs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("split-in");
+          splitObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .25 });
+    splitTitles.forEach((h2) => {
+      if (h2.getBoundingClientRect().top < window.innerHeight) h2.classList.add("split-in");
+      else splitObs.observe(h2);
+    });
+  }
+
+  /* 15c. Kartu tilt 3D mengikuti kursor */
+  if (canHoverFine && !reduceMotion) {
+    $$("[data-tilt]").forEach((el) => {
+      let raf = null;
+      el.addEventListener("pointermove", (e) => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = null;
+          const r = el.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - .5;
+          const py = (e.clientY - r.top) / r.height - .5;
+          el.style.setProperty("--rx", `${(-py * 6).toFixed(2)}deg`);
+          el.style.setProperty("--ry", `${(px * 8).toFixed(2)}deg`);
+        });
+      });
+      el.addEventListener("pointerleave", () => {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+        el.style.setProperty("--rx", "0deg");
+        el.style.setProperty("--ry", "0deg");
+      });
+    });
+  }
+
+  /* 15d. Dock: ikon membesar mengikuti jarak kursor (macOS dock) */
+  if (dock && canHoverFine && !reduceMotion && dockLinks.length) {
+    const RANGE = 105, MAG = 1.5;
+    let dockRaf = null;
+
+    dock.addEventListener("pointermove", (e) => {
+      if (dockRaf) return;
+      dockRaf = requestAnimationFrame(() => {
+        dockRaf = null;
+        dockLinks.forEach((link) => {
+          const r = link.getBoundingClientRect();
+          const dist = Math.abs(e.clientX - (r.left + r.width / 2));
+          const t = Math.max(0, 1 - dist / RANGE);
+          const eased = t * t * (3 - 2 * t);
+          link.style.setProperty("--s", (1 + (MAG - 1) * eased).toFixed(3));
+        });
+      });
+    });
+    dock.addEventListener("pointerleave", () => {
+      if (dockRaf) { cancelAnimationFrame(dockRaf); dockRaf = null; }
+      dockLinks.forEach((link) => link.style.setProperty("--s", "1"));
+    });
+  }
+
+  /* 15e. Tombol magnet: tertarik mengikuti kursor */
+  if (canHoverFine && !reduceMotion) {
+    $$("[data-magnetic]").forEach((el) => {
+      let rafM = null, lastEvt = null;
+      el.addEventListener("pointermove", (e) => {
+        lastEvt = e;
+        if (rafM) return;
+        rafM = requestAnimationFrame(() => {
+          rafM = null;
+          const r = el.getBoundingClientRect();
+          el.style.setProperty("--tx", `${((lastEvt.clientX - (r.left + r.width / 2)) * .3).toFixed(1)}px`);
+          el.style.setProperty("--ty", `${((lastEvt.clientY - (r.top + r.height / 2)) * .3).toFixed(1)}px`);
+        });
+      });
+      el.addEventListener("pointerleave", () => {
+        if (rafM) { cancelAnimationFrame(rafM); rafM = null; }
+        el.style.setProperty("--tx", "0px");
+        el.style.setProperty("--ty", "0px");
+      });
+    });
+  }
 })();
