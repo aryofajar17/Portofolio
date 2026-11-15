@@ -56,7 +56,8 @@ Cukup buka `index.html` di browser, tidak ada proses instalasi.
 │   ├── style.css         # Desain & tema (gelap/terang, responsif, print)
 │   ├── main.js           # Interaksi: menu, animasi, validasi form, tema
 │   ├── foto-profil.jpeg  # Foto profil
-│   └── favicon.svg       # Ikon tab browser (inisial AF)
+│   ├── favicon.svg       # Ikon tab browser (inisial AF)
+│   └── games/            # Gambar kartu game favorit (5 file jpg)
 ├── .gitignore
 ├── .gitattributes
 └── README.md
@@ -117,7 +118,7 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Keahlian & persentase | bagian `#keahlian` → `.skill-label` dan `--w` pada `.bar-fill` |
 | Pengalaman & pendidikan | bagian `#pengalaman` → `.timeline-item` |
 | Proyek | bagian `#proyek` → `.project-card` (judul, deskripsi, tag, link GitHub) |
-| Hobi & game favorit | bagian `#hobi` → `.hobby-card`, kartu game di `.game-card` (badge, judul, genre) |
+| Hobi & game favorit | bagian `#hobi` → `.hobby-card`, kartu game di `.game-card` (gambar di `assets/games/`, badge, judul, genre) |
 | Motto & kutipan | bagian `#motto` |
 | Kontak | bagian `#kontak` |
 | Dock navigasi bawah | elemen `#dock` (tautan & ikon tiap bagian) |
