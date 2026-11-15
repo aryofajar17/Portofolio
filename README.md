@@ -1,11 +1,11 @@
 # Portofolio — Aryo Fajar Pratomo
 
 Website portofolio pribadi satu halaman dengan tema **gelap ungu**. Dibuat untuk kebutuhan
-melamar kerja dan magang: menampilkan data diri, keahlian, pengalaman organisasi, hobi,
-motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
+melamar kerja dan magang: menampilkan data diri, keahlian, pengalaman organisasi, proyek,
+hobi, motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
 
-<!-- Setelah deploy, ganti bagian ini dengan URL website Anda -->
-> 🔗 **Live demo:** `https://aryofajar17.github.io/` _(aktifkan GitHub Pages dulu — lihat bagian [Deploy](#-deploy))_
+> 🔗 **Live demo:** [https://aryofajar17.github.io/Portofolio/](https://aryofajar17.github.io/Portofolio/)
+> _(GitHub Pages sudah aktif — otomatis ter-update setiap kali ada push ke `main`)_
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
@@ -30,8 +30,9 @@ motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
   - *Dock navigasi* ala macOS di bawah layar (ikon membesar mengikuti kursor, penanda bagian aktif),
   - Tombol *magnet* yang tertarik mengikuti kursor dan tombol utama dengan *star border*
     (bingkai cahaya berputar).
-- **Spotify embed** — playlist favorit bisa diputar langsung dari bagian Hobi (widget resmi Spotify,
-  otomatis disembunyikan saat mencetak CV).
+- **Kartu Spotify** — kartu dua kolom di bagian Hobi: heading, deskripsi, dan tombol menuju playlist
+  di kiri; player resmi Spotify dengan daftar lagu di kanan (bisa diputar langsung). Otomatis
+  disembunyikan saat mencetak CV.
 - **Form kontak** dengan validasi dan pengiriman via aplikasi email.
 - **Tombol Unduh / Cetak CV** → pilih "Save as PDF" pada dialog cetak (ada stylesheet khusus print).
 - **Responsif** untuk desktop, tablet, dan ponsel.
@@ -59,6 +60,7 @@ Cukup buka `index.html` di browser, tidak ada proses instalasi.
 │   ├── main.js           # Interaksi: menu, animasi, validasi form, tema
 │   ├── foto-profil.jpeg  # Foto profil
 │   ├── favicon.svg       # Ikon tab browser (inisial AF)
+│   ├── get-blessed.jpg   # Gambar dekorasi cadangan (belum terpakai)
 │   └── games/            # Gambar kartu game favorit (5 file jpg)
 ├── .gitignore
 ├── .gitattributes
@@ -148,12 +150,11 @@ dengan fokus di area wajah (`object-position: center 22%`).
 
 ## 🌐 Deploy
 
-### GitHub Pages (gratis)
+### GitHub Pages (gratis) — ✅ sudah aktif
 
-1. Buka **Settings → Pages** pada repositori ini.
-2. Bagian *Source*, pilih branch **`main`** dan folder **`/ (root)`**.
-3. Klik **Save**, tunggu 1–2 menit.
-4. Website tersedia di `https://<username>.github.io/<nama-repo>/`.
+Repo ini sudah ter-deploy: setiap push ke `main` otomatis memicu rebuild, dan website
+tampil di **https://aryofajar17.github.io/Portofolio/** (cek statusnya di
+**Settings → Pages**, source: branch `main`, folder `/ (root)`).
 
 > **Tips:** bila repo diberi nama `<username>.github.io`, website langsung dapat diakses
 > di `https://<username>.github.io/` tanpa akhiran nama repo.
@@ -166,31 +167,17 @@ dengan fokus di area wajah (`object-position: center 22%`).
 
 ## 📤 Push ke GitHub
 
-Repositori lokal sudah diinisialisasi dan commit pertama sudah dibuat pada branch `main`.
-Tinggal tambahkan remote dan push:
-
-```bash
-# 1. Hubungkan ke repo GitHub Anda (ganti URL-nya)
-git remote add origin https://github.com/USERNAME/NAMA-REPO.git
-
-# 2. Push commit pertama
-git push -u origin main
-```
-
-Jika repo GitHub sudah berisi file (mis. README bawaan), tarik dulu lalu gabungkan:
-
-```bash
-git pull --rebase origin main --allow-unrelated-histories
-git push -u origin main
-```
-
-Untuk perubahan berikutnya cukup:
+Remote `origin` sudah terhubung ke `https://github.com/aryofajar17/Portofolio.git`
+dan branch `main` sudah ter-push. Untuk perubahan berikutnya cukup:
 
 ```bash
 git add -A
 git commit -m "update: perbaikan konten"
 git push
 ```
+
+GitHub Pages akan otomatis membangun ulang website beberapa saat setelah push
+(bisa dipantau di **Settings → Pages → Builds**).
 
 ## 📄 Lisensi
 
