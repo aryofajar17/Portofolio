@@ -1738,6 +1738,8 @@ p { margin: 0; }
   transition: transform .45s var(--ease);
 }
 .game-card:hover .game-media img { transform: scale(1.05); }
+/* Gambar COD: judul game ada di bagian atas gambar — posisikan ke atas agar terlihat */
+.game-card:nth-child(5) .game-media img { object-position: center top; }
 .game-badge {
   position: absolute;
   top: 8px; left: 8px;
