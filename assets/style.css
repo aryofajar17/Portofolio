@@ -1757,9 +1757,21 @@ p { margin: 0; }
 }
 .game-info { padding: 0 5px 2px; }
 
-/* --- 19h2. Kartu Spotify --- */
-.spotify-embed { margin-top: 16px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); }
+/* --- 19h2. Kartu Spotify (dua kolom ala referensi) --- */
+.spotify-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: center;
+}
+.spotify-copy h3 { font-size: clamp(1.35rem, 2.6vw, 1.85rem); margin-bottom: 12px; }
+.spotify-copy p { font-size: .9rem; color: var(--muted); }
+.spotify-btn { margin-top: 20px; }
+.spotify-embed { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-lg); }
 .spotify-embed iframe { display: block; width: 100%; border: 0; }
+@media (max-width: 860px) {
+  .spotify-grid { grid-template-columns: 1fr; }
+}
 .game-card:nth-child(2) .game-badge { color: #fff; background: linear-gradient(135deg, #a78bfa, #7c3aed); box-shadow: 0 6px 16px -8px rgba(124,58,237,.4); }
 .game-card:nth-child(3) .game-badge { color: #fff; background: linear-gradient(135deg, #f0abfc, #c026d3); box-shadow: 0 6px 16px -8px rgba(192,38,211,.4); }
 .game-card:nth-child(4) .game-badge { color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); box-shadow: 0 6px 16px -8px rgba(37,99,235,.4); }

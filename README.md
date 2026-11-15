@@ -121,7 +121,7 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Pengalaman & pendidikan | bagian `#pengalaman` → `.timeline-item` |
 | Proyek | bagian `#proyek` → `.project-card` (judul, deskripsi, tag, link GitHub) |
 | Hobi & game favorit | bagian `#hobi` → `.hobby-card`, kartu game di `.game-card` (gambar di `assets/games/`, badge, judul, genre) |
-| Playlist Spotify | bagian `#hobi` → URL iframe di `.spotify-embed` (ganti id playlist pada `src`) |
+| Playlist Spotify | bagian `#hobi` → judul/teks di `.spotify-copy`, URL iframe `.spotify-embed` (ganti id playlist pada `src`), dan tautan tombol `.spotify-btn` |
 | Motto & kutipan | bagian `#motto` |
 | Kontak | bagian `#kontak` |
 | Dock navigasi bawah | elemen `#dock` (tautan & ikon tiap bagian) |

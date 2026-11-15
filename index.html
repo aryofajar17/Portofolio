@@ -44,6 +44,8 @@
     <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3.5" y="7.8" width="17" height="12.2" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9.2 7.8V6.3A1.8 1.8 0 0 1 11 4.5h2a1.8 1.8 0 0 1 1.8 1.8v1.5M3.5 12.8h17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
     <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.8 7.3A2.3 2.3 0 0 1 6.1 5h3c.7 0 1.4.3 1.8.9l.9 1.1h6.1a2.3 2.3 0 0 1 2.3 2.3v7.4a2.3 2.3 0 0 1-2.3 2.3H6.1a2.3 2.3 0 0 1-2.3-2.3V7.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
     <symbol id="i-spotify" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 9.8c3.1-.95 6.5-.6 9.1 1.05M7.8 12.6c2.5-.7 5.3-.35 7.4.95M8.2 15.3c2-.5 4.1-.25 5.8.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M9.5 17.5V6.8l8.5-1.9v10.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.3" cy="17.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="15.7" cy="15.3" r="2.3" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M9.5 7H17v7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- Scroll progress -->
@@ -512,17 +514,24 @@
           </article>
 
           <article class="hobby-card hobby-card-wide spotify-card spotlight" data-reveal>
-            <span class="hobby-icon"><svg class="ico" aria-hidden="true"><use href="#i-spotify"/></svg></span>
-            <h3>Lagi Diputar</h3>
-            <p>Playlist yang menemani saya ngoding dan bermain game — klik play kalau mau ikut mendengarkan.</p>
-            <div class="spotify-embed">
-              <iframe
-                title="Playlist Spotify favorit Aryo"
-                src="https://open.spotify.com/embed/playlist/0jBFh5kkR0kviVyKa299fT?utm_source=generator&theme=0"
-                width="100%" height="152"
-                frameborder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
+            <div class="spotify-grid">
+              <div class="spotify-copy">
+                <h3>Sedikit musik. <span class="grad-text">Banyak ide.</span></h3>
+                <p>Musik yang menemani proses saya mengubah ide menjadi sesuatu yang nyata. Intip playlist yang sedang sering saya putar.</p>
+                <a class="btn btn-ghost btn-sm spotify-btn" href="https://open.spotify.com/playlist/1jEQ5qPVdsrle44DICAtz8?si=46392b10d0034212" target="_blank" rel="noopener">
+                  <svg class="ico" aria-hidden="true"><use href="#i-note"/></svg> 2.000 Kali Putar di Spotify
+                  <svg class="ico" aria-hidden="true"><use href="#i-up-right"/></svg>
+                </a>
+              </div>
+              <div class="spotify-embed">
+                <iframe
+                  title="Playlist Spotify favorit Aryo"
+                  src="https://open.spotify.com/embed/playlist/1jEQ5qPVdsrle44DICAtz8?utm_source=generator&theme=0"
+                  width="100%" height="352"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+              </div>
             </div>
           </article>
         </div>
