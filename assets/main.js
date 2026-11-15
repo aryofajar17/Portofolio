@@ -405,6 +405,7 @@
 
     function startParticles() { if (rafId === null) rafId = requestAnimationFrame(drawParticles); }
     function stopParticles() { if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; } }
+    window.__stopHeroParticles = stopParticles;
 
     sizeCanvas();
     spawnParticles();
@@ -521,5 +522,30 @@
         el.style.setProperty("--ty", "0px");
       });
     });
+  }
+
+  /* 15g. Watchdog performa: bila FPS perangkat rendah, turunkan efek otomatis */
+  if (!reduceMotion && "requestAnimationFrame" in window) {
+    let perfChecks = 0;
+    function checkPerformance() {
+      perfChecks++;
+      let frames = 0;
+      const t0 = performance.now();
+      function tick() {
+        frames++;
+        if (performance.now() - t0 < 1200) requestAnimationFrame(tick);
+        else {
+          const fps = frames / ((performance.now() - t0) / 1000);
+          if (fps < 30) {
+            document.documentElement.classList.add("perf-lite");
+            if (typeof window.__stopHeroParticles === "function") window.__stopHeroParticles();
+          } else if (perfChecks < 2) {
+            setTimeout(checkPerformance, 4000);
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    setTimeout(checkPerformance, 900);
   }
 })();

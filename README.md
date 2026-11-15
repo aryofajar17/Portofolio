@@ -140,7 +140,9 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Kecepatan star border | `assets/style.css` → durasi `animation: starSpin` pada `.btn-primary::before` |
 
 > Semua efek otomatis nonaktif untuk pengunjung dengan `prefers-reduced-motion`, saat mencetak,
-> dan partikel berhenti saat tab tidak aktif (hemat baterai).
+> dan partikel berhenti saat tab tidak aktif (hemat baterai). Ada juga **mode hemat otomatis**:
+> bila FPS perangkat pengunjung rendah, website mempause aurora & star border, menyembunyikan
+> partikel, dan melepas efek kaca (backdrop blur) agar tetap lancar.
 
 ### Foto profil
 

@@ -1447,7 +1447,7 @@ p { margin: 0; }
   inset: -22% -12%;
   z-index: 0;
   pointer-events: none;
-  filter: blur(64px) saturate(130%);
+  filter: blur(64px);
   opacity: .75;
 }
 [data-theme="light"] .aurora { opacity: .42; }
@@ -1780,7 +1780,14 @@ p { margin: 0; }
 .game-info strong { display: block; font-size: .84rem; color: var(--text); line-height: 1.35; }
 .game-info span { display: block; margin-top: 2px; font-size: .72rem; color: var(--muted); }
 
-/* --- 19i. Penyesuaian kecil --- */
+/* --- 19i2. Mode hemat otomatis (kelas .perf-lite ditambahkan main.js saat FPS rendah) --- */
+.perf-lite .a-blob,
+.perf-lite .btn-primary::before { animation-play-state: paused !important; }
+.perf-lite .hero-particles { display: none !important; }
+.perf-lite .site-header,
+.perf-lite .dock { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+
+/* --- 19j. Penyesuaian kecil --- */
 .toast { bottom: 96px; }
 .site-footer { padding-bottom: 78px; }
 
