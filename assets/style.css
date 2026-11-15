@@ -1756,6 +1756,10 @@ p { margin: 0; }
   box-shadow: 0 4px 12px -4px rgba(0,0,0,.6);
 }
 .game-info { padding: 0 5px 2px; }
+
+/* --- 19h2. Kartu Spotify --- */
+.spotify-embed { margin-top: 16px; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); }
+.spotify-embed iframe { display: block; width: 100%; border: 0; }
 .game-card:nth-child(2) .game-badge { color: #fff; background: linear-gradient(135deg, #a78bfa, #7c3aed); box-shadow: 0 6px 16px -8px rgba(124,58,237,.4); }
 .game-card:nth-child(3) .game-badge { color: #fff; background: linear-gradient(135deg, #f0abfc, #c026d3); box-shadow: 0 6px 16px -8px rgba(192,38,211,.4); }
 .game-card:nth-child(4) .game-badge { color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); box-shadow: 0 6px 16px -8px rgba(37,99,235,.4); }
@@ -1783,7 +1787,7 @@ p { margin: 0; }
 }
 
 @media print {
-  .dock, .aurora, .hero-particles, .btn-primary::before { display: none !important; }
+  .dock, .aurora, .hero-particles, .btn-primary::before, .spotify-card { display: none !important; }
   .site-footer { padding-bottom: 0 !important; }
   [data-tilt] { transform: none !important; }
 }

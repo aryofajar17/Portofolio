@@ -30,6 +30,8 @@ motto hidup, dan kutipan favorit dalam satu halaman yang rapi dan responsif.
   - *Dock navigasi* ala macOS di bawah layar (ikon membesar mengikuti kursor, penanda bagian aktif),
   - Tombol *magnet* yang tertarik mengikuti kursor dan tombol utama dengan *star border*
     (bingkai cahaya berputar).
+- **Spotify embed** — playlist favorit bisa diputar langsung dari bagian Hobi (widget resmi Spotify,
+  otomatis disembunyikan saat mencetak CV).
 - **Form kontak** dengan validasi dan pengiriman via aplikasi email.
 - **Tombol Unduh / Cetak CV** → pilih "Save as PDF" pada dialog cetak (ada stylesheet khusus print).
 - **Responsif** untuk desktop, tablet, dan ponsel.
@@ -88,7 +90,7 @@ npx serve .
 | 02 Keahlian | Hard skill (progress bar), tools favorit, soft skill |
 | 03 Pengalaman | Sekretaris Umum (2026–2027), Staff Divisi Operasional, proyek latihan, pendidikan |
 | 04 Proyek | Kartu proyek/eksperimen (tilt 3D + spotlight) + tombol ke GitHub |
-| 05 Hobi | Bermain game, gym, mencoba koding baru |
+| 05 Hobi | Bermain game (kartu bergambar), gym, mencoba koding baru, playlist Spotify |
 | 06 Motto | Motto hidup + kutipan favorit |
 | 07 Kontak | Email, WhatsApp, lokasi, form kontak |
 
@@ -119,6 +121,7 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Pengalaman & pendidikan | bagian `#pengalaman` → `.timeline-item` |
 | Proyek | bagian `#proyek` → `.project-card` (judul, deskripsi, tag, link GitHub) |
 | Hobi & game favorit | bagian `#hobi` → `.hobby-card`, kartu game di `.game-card` (gambar di `assets/games/`, badge, judul, genre) |
+| Playlist Spotify | bagian `#hobi` → URL iframe di `.spotify-embed` (ganti id playlist pada `src`) |
 | Motto & kutipan | bagian `#motto` |
 | Kontak | bagian `#kontak` |
 | Dock navigasi bawah | elemen `#dock` (tautan & ikon tiap bagian) |
