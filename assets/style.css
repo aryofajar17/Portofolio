@@ -1701,7 +1701,52 @@ p { margin: 0; }
   justify-content: center;
 }
 
-/* --- 19h. Penyesuaian kecil --- */
+/* --- 19h. Kartu game favorit --- */
+.game-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 10px;
+}
+.game-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-3) 55%, transparent);
+  overflow: hidden;
+  transition: transform .25s var(--ease), border-color .25s var(--ease);
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+.game-badge {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  font-family: var(--font-display);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--accent-ink);
+  background: var(--grad);
+  box-shadow: 0 6px 16px -8px var(--accent-glow);
+}
+.game-card:nth-child(2) .game-badge { color: #fff; background: linear-gradient(135deg, #a78bfa, #7c3aed); box-shadow: 0 6px 16px -8px rgba(124,58,237,.4); }
+.game-card:nth-child(3) .game-badge { color: #fff; background: linear-gradient(135deg, #f0abfc, #c026d3); box-shadow: 0 6px 16px -8px rgba(192,38,211,.4); }
+.game-card:nth-child(4) .game-badge { color: #fff; background: linear-gradient(135deg, #60a5fa, #2563eb); box-shadow: 0 6px 16px -8px rgba(37,99,235,.4); }
+.game-card:nth-child(5) .game-badge { color: #140a1e; background: linear-gradient(135deg, #fbbf24, #ea580c); box-shadow: 0 6px 16px -8px rgba(234,88,12,.4); }
+.game-info { min-width: 0; }
+.game-info strong { display: block; font-size: .84rem; color: var(--text); line-height: 1.35; }
+.game-info span { display: block; margin-top: 2px; font-size: .72rem; color: var(--muted); }
+
+/* --- 19i. Penyesuaian kecil --- */
 .toast { bottom: 96px; }
 .site-footer { padding-bottom: 78px; }
 

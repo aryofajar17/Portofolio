@@ -117,7 +117,7 @@ Semua warna terpusat sebagai CSS variable di bagian atas `assets/style.css`:
 | Keahlian & persentase | bagian `#keahlian` → `.skill-label` dan `--w` pada `.bar-fill` |
 | Pengalaman & pendidikan | bagian `#pengalaman` → `.timeline-item` |
 | Proyek | bagian `#proyek` → `.project-card` (judul, deskripsi, tag, link GitHub) |
-| Hobi & game favorit | bagian `#hobi` → `.hobby-card` |
+| Hobi & game favorit | bagian `#hobi` → `.hobby-card`, kartu game di `.game-card` (badge, judul, genre) |
 | Motto & kutipan | bagian `#motto` |
 | Kontak | bagian `#kontak` |
 | Dock navigasi bawah | elemen `#dock` (tautan & ikon tiap bagian) |
